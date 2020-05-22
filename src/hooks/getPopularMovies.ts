@@ -1,37 +1,56 @@
-import { useState, useEffect } from "react";
-import axios, { AxiosError, AxiosResponse } from "axios";
+import { useState, useEffect } from 'react'
+import axios, { AxiosError } from 'axios'
 
-import { Movie } from "../types/Movie";
+import { Movie } from '../types/Movie'
 
 interface PopularMoviesResponse {
-    page: number;
-    total_results: number;
-    total_pages: number;
-    results: Movie[];
+    page: number
+    total_results: number
+    total_pages: number
+    results: Movie[]
 }
 
-const fetchUrl = `${process.env.REACT_APP_BASE_URL}movie/popular?api_key=${process.env.REACT_APP_API_KEY}`;
+const fetchUrl = (page: number = 1) =>
+    `${process.env.REACT_APP_BASE_URL}movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`
 
 function GetPopularMovies() {
-    const [response, setResponse] = useState<AxiosResponse<PopularMoviesResponse> | null>(null);
-    const [error, setError] = useState<AxiosError | null>(null);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [data, setData] = useState<PopularMoviesResponse['results']>([])
+    const [error, setError] = useState<AxiosError | null>(null)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [page, setPage] = useState<number>(1)
+
+    function handleScroll() {
+        if (
+            window.innerHeight + document.documentElement.scrollTop !==
+            document.documentElement.offsetHeight
+        )
+            return
+
+        setPage((prevPage) => prevPage + 1)
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
 
     useEffect(() => {
         const fetchData = async () => {
-            setIsLoading(true);
+            setIsLoading(true)
             try {
-                const res = await axios.get<PopularMoviesResponse>(fetchUrl);
-                setResponse(res);
-                setIsLoading(false);
+                const res = await axios.get<PopularMoviesResponse>(
+                    fetchUrl(page)
+                )
+                setData((prevData) => [...prevData, ...res.data.results])
+                setIsLoading(false)
             } catch (e) {
-                setError(error);
+                setError(e)
             }
-        };
-        fetchData();
-    }, [])
+        }
+        fetchData()
+    }, [page])
 
-    return { response, error, isLoading };
+    return { data, error, isLoading }
 }
 
-export default GetPopularMovies;
+export default GetPopularMovies
