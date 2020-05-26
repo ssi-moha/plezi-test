@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Movie } from '../types/Movie'
 import styled from 'styled-components'
+import { getImageUrl } from '../utils'
 
 interface Props {
     movie: Movie
@@ -13,6 +14,11 @@ const MovieTitle = styled.h2`
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity 0.5s linear;
+    color: white;
+`
+const ImageContainer = styled.img`
+    border-radius: 10px;
+    transition: opacity 0.5s linear;
 `
 
 const MovieCardContainer = styled.div<{ imgUrl: string | null }>`
@@ -21,16 +27,16 @@ const MovieCardContainer = styled.div<{ imgUrl: string | null }>`
     align-items: center;
     width: 300px;
     height: 450px;
-    border-radius: 10px;
     margin: 15px;
-    background: no-repeat url(${({ imgUrl }) => imgUrl});
-    transition: opacity 0.5s linear;
+
     @media (max-width: 768px) {
         margin: auto;
     }
 
     :hover {
-        opacity: 0.6;
+        ${ImageContainer} {
+            opacity: 0.6;
+        }
         ${MovieTitle} {
             visibility: visible;
             opacity: 1;
@@ -39,9 +45,10 @@ const MovieCardContainer = styled.div<{ imgUrl: string | null }>`
 `
 
 const MovieCard: React.FC<Props> = ({ movie }) => {
-    const imgUrl = `${process.env.REACT_APP_POSTER_URL}w300${movie.poster_path}`
+    const imgUrl = getImageUrl(movie.poster_path)
     return (
         <MovieCardContainer imgUrl={imgUrl}>
+            <ImageContainer src={imgUrl} alt={movie.title} />
             <MovieTitle>{movie.title}</MovieTitle>
         </MovieCardContainer>
     )

@@ -5,6 +5,7 @@ import MovieCard from '../MovieCard'
 import { Row, Col } from 'react-flexbox-grid'
 // @ts-ignore
 import { Ring } from 'react-awesome-spinners'
+import { Link } from 'react-router-dom'
 
 interface Props {
     movies: Movie[] | null
@@ -12,7 +13,6 @@ interface Props {
 }
 
 const Container = styled.div`
-    color: white;
     text-align: center;
     padding: 15px 50px;
     @media (max-width: 768px) {
@@ -36,7 +36,9 @@ const MovieList: React.FC<Props> = ({ movies, isLoading }) => {
             <Row center="xs">
                 {movies.map((movie, index) => (
                     <MovieCardBlock key={index}>
-                        <MovieCard movie={movie} />
+                        <Link to={`/${movie.id}`}>
+                            <MovieCard movie={movie} />
+                        </Link>
                     </MovieCardBlock>
                 ))}
             </Row>
