@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Theme from './Theme'
+import { BrowserRouter as Router } from 'react-router-dom'
 
+import Theme from './Theme'
 import Routes from './Routes'
 
 const Header = styled.div`
@@ -17,10 +18,12 @@ const Header = styled.div`
 
 function App() {
     return (
-        <Theme>
-            <Header>PLEZI</Header>
-            <Routes />
-        </Theme>
+        <Router>
+            <Theme>
+                <Header>PLEZI</Header>
+                <Routes />
+            </Theme>
+        </Router>
     )
 }
 

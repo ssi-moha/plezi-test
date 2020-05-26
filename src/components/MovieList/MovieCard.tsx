@@ -1,7 +1,7 @@
 import React from 'react'
-import { Movie } from '../types/Movie'
+import { Movie } from '../../types/Movie'
 import styled from 'styled-components'
-import { getImageUrl } from '../utils'
+import { getImageUrl } from '../../utils'
 
 interface Props {
     movie: Movie

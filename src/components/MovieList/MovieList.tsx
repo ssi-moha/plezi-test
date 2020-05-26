@@ -1,11 +1,11 @@
 import React from 'react'
 import { Movie } from '../../types/Movie'
 import styled from 'styled-components'
-import MovieCard from '../MovieCard'
+import MovieCard from './MovieCard'
 import { Row, Col } from 'react-flexbox-grid'
+import { Link } from 'react-router-dom'
 // @ts-ignore
 import { Ring } from 'react-awesome-spinners'
-import { Link } from 'react-router-dom'
 
 interface Props {
     movies: Movie[] | null

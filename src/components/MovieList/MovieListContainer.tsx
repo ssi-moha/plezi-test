@@ -10,10 +10,12 @@ const MovieListContainer: React.FC<Props> = () => {
     const [fetchUrl, setFetchUrl] = useState(
         `${process.env.REACT_APP_BASE_URL}movie/popular?api_key=${process.env.REACT_APP_API_KEY}`
     )
+
     const { data, isLoading, setNextPage, page } = useTMDbApi<Movie[]>(
         fetchUrl,
         true
     )
+
     useEventListener(setNextPage)
 
     useEffect(

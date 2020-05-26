@@ -4,7 +4,6 @@ import { Col } from 'react-flexbox-grid'
 export const LoaderBlock = styled.div`
     padding: 200px 0;
     width: 100%;
-
     text-align: center;
 `
 
@@ -39,7 +38,7 @@ export const MovieCardBlock = styled.div<{ imgUrl: string }>`
 
 export const ReturnIcon = styled.i`
     position: absolute;
-    background-image: url('/arrow-pointing-left.png');
+    background-image: url('/assets/arrow-pointing-left.png');
     width: 30px;
     height: 30px;
     left: 15px;

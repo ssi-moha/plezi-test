@@ -10,9 +10,9 @@ import {
 } from './style'
 import TextDetails from './TextDetails'
 import { MovieDetails } from '../../types/MovieDetails'
+import { AxiosError } from 'axios'
 // @ts-ignore
 import { Ring } from 'react-awesome-spinners'
-import { AxiosError } from 'axios'
 
 interface Props {
     movie: MovieDetails | null

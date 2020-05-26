@@ -1,20 +1,11 @@
 import { useState, useEffect } from 'react'
 import axios, { AxiosError } from 'axios'
 
-import { Movie } from '../types/Movie'
-
-interface PopularMoviesResponse {
-    page: number
-    total_results: number
-    total_pages: number
-    results: Movie[]
-}
-
 function useTMDbApi<DataType>(fetchUrl: string, pagination?: boolean) {
     const [data, setData] = useState<DataType | null>(null)
     const [error, setError] = useState<AxiosError | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [page, setPage] = useState<number>(1)
+    const [page, setPage] = useState<number>(2)
 
     function setNextPage() {
         setPage((prevPage) => prevPage + 1)
