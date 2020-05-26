@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import MovieListContainer from './components/MovieList/MovieListContainer'
-import MovieDetails from './components/MovieDetails/MovieDetails'
+import MovieDetails from './components/MovieDetails/MovieDetailsContainer'
 
 interface Props {}
 const Routes: React.FC<Props> = () => {
