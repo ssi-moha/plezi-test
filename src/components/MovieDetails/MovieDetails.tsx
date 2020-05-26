@@ -1,7 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import useTMDbApi from '../../hooks/useTMDbApi'
-import MovieDetailsCard from './MovieDetailsCard'
 import { MovieDetails as MovieDetailsType } from '../../types/MovieDetails'
 import MovieDetailsPage from './MovieDetailsPage'
 

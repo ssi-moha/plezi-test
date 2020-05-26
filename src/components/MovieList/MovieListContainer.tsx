@@ -14,7 +14,7 @@ const MovieListContainer: React.FC<Props> = () => {
         fetchUrl,
         true
     )
-    const {} = useEventListener(setNextPage)
+    useEventListener(setNextPage)
 
     useEffect(
         () =>
