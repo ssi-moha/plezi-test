@@ -8,7 +8,9 @@ interface Props {}
 
 const MovieListContainer: React.FC<Props> = () => {
     const [fetchUrl, setFetchUrl] = useState(
-        `${process.env.REACT_APP_BASE_URL}movie/popular?api_key=${process.env.REACT_APP_API_KEY}`
+        `${process.env.REACT_APP_BASE_URL}movie/popular?api_key=${
+            process.env.REACT_APP_API_KEY
+        }&page=${1}`
     )
 
     const { data, isLoading, setNextPage, page } = useTMDbApi<Movie[]>(
